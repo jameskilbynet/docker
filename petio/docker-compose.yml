@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  petio:
+    container_name: petio
+    image: cr.hotio.dev/hotio/petio
+    ports:
+      - 7778:7777
+    environment:
+      - PUID=1024
+      - PGID=100
+      - TZ=Europe/London
+      - UMASK=002
+    volumes:
+      - /volume1/docker/petio:/config
+
+  mongo:
+    container_name: mongo44
+    image: mongo:4.4
+    user: 1024:100
+    volumes:
+      - /volume1/docker/petiodb:/data/configdb
+      - /volume1/docker/petiodb/data:/data/db
