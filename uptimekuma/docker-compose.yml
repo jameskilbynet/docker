@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - /volume1/docker/uptime-kuma-data:/app/data
+    ports:
+      - 3001:3001  
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=uptime-kuma"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:uptime.jameskilby.cloud"
+      - "traefik.port=3000"

@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+    unifi:
+        restart: unless-stopped
+        container_name: unifi-controller
+        network_mode: host
+        volumes:
+            - '/volume1/docker/unifi:/var/lib/unifi'
+        ports:
+            - '8080:8080/tcp'
+            - '8081:8081/tcp'
+            - '8443:8443/tcp'
+            - '8843:8843/tcp'
+            - '8880:8880/tcp'
+            - '8883:8883/tcp'
+            - '3478:3478/udp'
+        image: 'jacobalberty/unifi:latest'
