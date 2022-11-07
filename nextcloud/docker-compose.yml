@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  
+  mariadb:
+    container_name: mariadbnextcloud
+    image: mariadb
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-read-only-compressed=OFF
+    restart: always
+    volumes:
+      - /volume1/docker/nextclouddb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_PASSWORD=mysqlpassword
+      - MYSQL_DATABASE=nextcloudatabasename
+      - MYSQL_USER=nextclouduser
+
+  nextcloud:
+    container_name: nextcloud
+    ports:
+      - 8082:80
+    depends_on:
+      - mariadb
+    environment:
+      - PUID=1024
+      - PGID=100
+      - TZ=Europe/London
+    volumes:
+      - /volume1/docker/nextcloud/html:/var/www/html
+      - /volume1/docker/nextcloud/custom_apps:/var/www/html/custom_apps
+      - /volume1/docker/nextcloud/config:/var/www/html/config
+      - /volume1/docker/nextcloud/data:/var/www/html/data
+      - /volume1/docker/nextcloud/themes:/var/www/html/themes/
+    image: nextcloud
+    restart: always
+
+volumes:
+  mariadb: # nextcloud
