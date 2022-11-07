@@ -3,6 +3,8 @@ version: '2'
 services:
    db:
      image: mysql:5.7
+     networks:
+      - internal
      volumes:
      - /volume1/docker/jameskilbycouk/db:/var/lib/mysql
      restart: always
@@ -16,11 +18,26 @@ services:
      image: wordpress:latest
      ports:
       - 8182:80
+     networks:
+      - web
+      - internal
+     labels:
+      - "traefik.enable=true"
+      - "traefik.backend=Host-wordpress-jameskilby-cloud-1"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:wordpress.jameskilby.cloud"
+      - "traefik.port=8182"
      restart: always
      environment:
+       
        WORDPRESS_DB_HOST: db:3306
        WORDPRESS_DB_USER: wordpress
        WORDPRESS_DB_PASSWORD: wordpress
      volumes:
       - /volume1/docker/jameskilbycouk/web:/var/www/html
       - /volume1/docker/jameskilbycouk/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - /volume1/docker/jameskilbycouk/wordpress.ini:/usr/local/etc/php/conf.d/wordpress.ini 
+networks:
+  internal:
+  web:
+    external: true
