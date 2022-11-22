@@ -1,0 +1,10 @@
+docker run -d \
+    --name=whisparr \
+    -p 6969:6969 \
+    -e PUID=1024 \
+    -e PGID=100 \
+    -e UMASK=002 \
+    -e TZ=Europe/London \
+    -v /volume1/docker/whisparr:/config \
+    -v /volume2/Media2/other2:/adultmovies \
+    cr.hotio.dev/hotio/whisparr:nightly
