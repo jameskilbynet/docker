@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+    app-collection:
+        container_name: composerize
+        environment:
+            - TZ=Europe/London
+            - PUID=1026
+            - PGID=100
+            - INSTALL_COMPOSERIZE=true
+        volumes:
+            - '/volume1/docker/composerize:/config'
+        ports:
+            - '1002:80'
+        restart: unless-stopped
+        image: 'griefed/app-collection:latest'
