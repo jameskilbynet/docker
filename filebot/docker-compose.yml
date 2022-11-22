@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+    filebot:
+        container_name: filebot
+        ports:
+            - '9929:5800'
+        volumes:
+            - '/volume1/docker/filebot:/config:rw'
+            - '/volume1/data/media:/data'
+            - '$HOME:/storage:rw'
+        image: jlesage/filebot
