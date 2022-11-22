@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+    home-assistant:
+        container_name: homeassistant
+        ports:
+            - '8123:8123'
+        environment:
+            - TZ=Europe/London
+        volumes:
+            - '/volume1/docker/homeassistant:/config'
+        restart: always
+        image: homeassistant/home-assistant
