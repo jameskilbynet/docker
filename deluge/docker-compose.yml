@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+    linuxserver:
+        container_name: deluge
+        ports:
+            - '8112:8112'
+            - '6881:6881'
+            - '6881:6881/udp'
+        environment:
+            - PUID=1024
+            - PGID=100
+            - TZ=Europe/London
+        volumes:
+            - '/volume1/docker/deluge:/config'
+            - '/volume2/Media2/Downloads:/downloads'
+        restart: always
+        image: ghcr.io/linuxserver/deluge
