@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+    linuxserver:
+        container_name: sonarr
+        ports:
+            - '8989:8989'
+        environment:
+            - PUID=1024
+            - PGID=100
+            - TZ=Europe/London
+        volumes:
+            - '/volume1/docker/sonarr:/config'
+            - '/volume2/Media2/Movie:/movies'
+            - '/volume2/Media2/TV/TV Shows:/tv'
+        restart: always
+        image: ghcr.io/linuxserver/sonarr
