@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+    rancher:
+        container_name: rancher
+        ports:
+            - '8064:80'
+            - '5443:443'
+        environment:
+            - CATTLE_BOOTSTRAP_PASSWORD=mariushosting
+        volumes:
+            - '/volume1/docker/rancher:/var/lib/rancher'
+        privileged: false
+        restart: always
+        image: rancher/rancher
