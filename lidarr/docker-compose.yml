@@ -13,3 +13,4 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /volume1/docker/lidarr:/config
+      - /volume2/Media2/Music:/music
