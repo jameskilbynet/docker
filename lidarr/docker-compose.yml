@@ -12,4 +12,4 @@ services:
       - UMASK=002
       - TZ=Etc/UTC
     volumes:
-      - /<host_folder_config>:/config
+      - /volume1/docker/lidarr:/config
