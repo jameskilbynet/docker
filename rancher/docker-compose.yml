@@ -6,7 +6,7 @@ services:
             - '8064:80'
             - '5443:443'
         environment:
-            - CATTLE_BOOTSTRAP_PASSWORD=mariushosting
+            - CATTLE_BOOTSTRAP_PASSWORD=Pp0u30b1
         volumes:
             - '/volume1/docker/rancher:/var/lib/rancher'
         privileged: false
