@@ -3,8 +3,8 @@ services:
     volume1:
         container_name: grafana
         ports:
-            - 3001:3000
+            - '3010:3000'
         volumes:
-            - /volume1/docker/grafana:/var/lib/grafana
+            - '/volume1/docker/grafana:/var/lib/grafana'
         restart: always
-        image: /volume1/docker/grafana
+        image: grafana/grafana
