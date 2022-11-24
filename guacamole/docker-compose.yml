@@ -1,0 +1,15 @@
+
+version: '3.3'
+services:
+    guacamole:
+        container_name: guacamole
+        ports:
+            - '8348:8080'
+        environment:
+            - PUID=1024
+            - PGID=100
+            - TZ=Europe/London
+        volumes:
+            - '/volume1/docker/guacamole:/config'
+        restart: always
+        image: jwetzell/guacamole
