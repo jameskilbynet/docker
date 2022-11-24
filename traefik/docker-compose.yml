@@ -1,21 +1,33 @@
-version: '3'
-
+version: "2"
 services:
-  reverse-proxy:
-    image: traefik:v1.7 # The official Traefik docker image
-    restart: always
-    command: --api --docker # Enables the web UI and tells Traefik to listen to docker
-    ports:
-      - "80:80"     # The HTTP port
-      - "443:443"   # The HTTPs port
-      - "8085:8080" # The Web UI (enabled by --api)
+  traefik:
+    image: traefik
+    container_name: tr
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-      - /volume1/docker/traefik/traefik.toml:/traefik.toml
-      - /volume1/docker/traefik/acme.json:/acme.jsonn
-    networks:
-      - web
-
-networks:
-  web:
-    external: true
+      - /volume1/docker/traefik/config:/etc/traefik
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    environment:
+      - CLOUDFLARE_EMAIL=1234@gmail.com
+      - CLOUDFLARE_API_KEY=1234
+    command:
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entryPoint.to=websecure
+      - --entrypoints.web.http.redirections.entryPoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.cloudflare.acme.dnschallenge=true
+      - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
+      - --certificatesresolvers.cloudflare.acme.email=1234@gmail.com
+    restart: unless-stopped
+  nginxtest:
+    image: nginx
+    container_name: nginxtest
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nginxtest.rule=Host(`test.el.gg.ktz.me`)
+      - traefik.http.routers.nginxtest.entrypoints=websecure
+      - traefik.http.routers.nginxtest.tls.certresolver=cloudflare
+    restart: unless-stopped
