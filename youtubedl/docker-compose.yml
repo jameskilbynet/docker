@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+    youtubedl-material:
+        container_name: youtubedl
+        ports:
+            - '8084:17442'
+        volumes:
+            - '/volume1/docker/youtubedl/appdata:/app/appdata'
+            - '/volume1/docker/youtubedl/audio:/app/audio'
+            - '/volume1/docker/youtubedl/subscriptions:/app/subscriptions'
+            - '/volume1/docker/youtubedl/users:/app/users'
+            - '/volume1/docker/youtubedl/video:/app/video'
+        restart: always
+        image: tzahi12345/youtubedl-material
