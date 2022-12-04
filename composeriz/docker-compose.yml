@@ -4,7 +4,7 @@ services:
         container_name: composerize
         environment:
             - TZ=Europe/London
-            - PUID=1026
+            - PUID=1024
             - PGID=100
             - INSTALL_COMPOSERIZE=true
         volumes:
