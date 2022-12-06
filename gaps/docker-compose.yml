@@ -3,7 +3,8 @@
     container_name: gaps
     ports:
       - 5211:8484
-   
+    expose:
+      - 32400
     volumes:
-      - /volume1/docker/gaps/gaps:/usr/data
+      - /volume1/downloads/gaps:/usr/data
     restart: unless-stopped
