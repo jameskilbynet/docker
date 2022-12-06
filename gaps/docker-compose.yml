@@ -1,0 +1,9 @@
+ gaps:
+    image: housewrecker/gaps:latest
+    container_name: gaps
+    ports:
+      - 5211:8484
+   
+    volumes:
+      - /volume1/docker/gaps/gaps:/usr/data
+    restart: unless-stopped
