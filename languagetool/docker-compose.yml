@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  languagetool:
+    image: meyay/languagetool:latest
+    container_name: languagetool
+    ports:
+      - 8010:8010
+    environment:
+      download_ngrams_for_langs: en
+      langtool_languageModel: /ngrams
+      langtool_fasttextModel: /fasttext/lid.176.bin
+      MAP_UID: YOURUID
+      MAP_GID: YOURGID
+    volumes:
+      - /volume1/docker/languagetool/ngrams:/ngrams
+      - /volume1/docker/languagetool/fasttext:/fasttext
+    network_mode: synobridge

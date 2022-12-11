@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  tubesync:
+    image: dougeubanks/tubesync:latest
+    container_name: tubesync
+    restart: unless-stopped
+    volumes:
+      - /volume1/docker/tubesync:/config
+      - /volume1/data/media/youtube:/downloads
+    environment:
+      - TZ=Europe/London
+      - PUID=YOURPUID
+      - PGID=YOURPGID
+      - HTTP_USER=OPTIONALUSERNAME #remove this line if not required
+      - HTTP_PASS=OPTIONALPASSWORD #remove this line if not required
+    ports:
+      - 4848:4848
+    network_mode: synobridge
+    restart: unless-stopped
