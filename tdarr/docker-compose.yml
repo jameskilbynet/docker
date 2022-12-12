@@ -9,7 +9,6 @@ services:
       - 8265:8265 # webUI port
       - 8266:8266 # server port
       - 8267:8267 # Internal node port
-      - 8268:8268 # Example extra node port
     environment:
       - TZ=Europe/London
       - PUID=1024
@@ -45,6 +44,8 @@ services:
       - nodeID=MainNode
       - serverIP=192.168.10.245
       - serverPort=8266
+      - LIBVA_DRIVER_NAME=i965
+      - LIBVA_DRIVERS_PATH=/usr/lib/x86_64-linux-gnu/dri/
     volumes:
       - /volume1/docker/tdarr/configs:/app/configs
       - /volume1/docker/tdarr/logs:/app/logs
@@ -53,3 +54,5 @@ services:
       - /volume2/Media2/TV:/TV
       - /volume2/Media2/Tdarrtest:/Tdarrtest
       - /volume1/docker/tdarr/transcode_cache:/temp
+      devices:
+      - /dev/dri:/dev/dri
