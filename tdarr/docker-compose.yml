@@ -49,4 +49,7 @@ services:
       - /volume1/docker/tdarr/configs:/app/configs
       - /volume1/docker/tdarr/logs:/app/logs
       - /volume2/Media2/other2:/other2
+      - /volume2/Media2/Movie
+      - /volume2/Media2/TV
+      - /volume2/Media2/Tdarrtest
       - /volume1/docker/tdarr/transcode_cache:/temp
