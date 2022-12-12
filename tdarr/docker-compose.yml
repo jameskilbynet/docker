@@ -54,5 +54,5 @@ services:
       - /volume2/Media2/TV:/TV
       - /volume2/Media2/Tdarrtest:/Tdarrtest
       - /volume1/docker/tdarr/transcode_cache:/temp
-      devices:
+    devices:
       - /dev/dri:/dev/dri
