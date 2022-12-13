@@ -27,7 +27,7 @@ services:
       - /volume2/Media2/Movie:/Movie
       - /volume2/Media2/TV:/TV
       - /volume2/Media2/Tdarrtest:/Tdarrtest
-      - /volume1/docker/tdarr/transcode_cache:/temp
+      - /volume1/docker/tdarr/transcode_cache:/transcode_cache
 
 
 # node example
@@ -53,6 +53,6 @@ services:
       - /volume2/Media2/Movie:/Movie
       - /volume2/Media2/TV:/TV
       - /volume2/Media2/Tdarrtest:/Tdarrtest
-      - /volume1/docker/tdarr/transcode_cache:/temp
+      - /volume1/docker/tdarr/transcode_cache:/transcode_cache
     devices:
       - /dev/dri:/dev/dri
