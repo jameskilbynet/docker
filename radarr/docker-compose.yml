@@ -12,5 +12,7 @@ services:
             - '/volume1/docker/radarr:/config'
             - '/volume2/Media2/Movie:/movies'
             - '/volume2/Media2/TV/TV Shows:/tv'
+            - '/volume2/Media2/Downloads:/tv'
+
         restart: always
         image: ghcr.io/linuxserver/radarr
