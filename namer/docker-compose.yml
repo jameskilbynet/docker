@@ -1,0 +1,14 @@
+version: "3"
+services:
+  namer:
+    container_name: namer
+    image: ghcr.io/theporndatabase/namer:latest
+    environment:
+      - PUID=1024
+      - PGID=100
+      - TZ=TZ=Europe/London
+      - NAMER_CONFIG=/config/namer.cfg
+    volumes:
+      - /volume1/docker/namer/apps/namer/:/config <- this will store the namer.cfg file copied by you from the git repo ( namer/namer.cfg.default )
+      - /volume1/docker/namer/media:/data <- this will have the four folders namer needs to work, referenced in the namer.cfg file you create.
+    restart: always
