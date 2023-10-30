@@ -3,7 +3,7 @@ services:
     homebridge:
         container_name: homebridge
         environment:
-            - DSM_HOSTNAME=Galactica
+            - DSM_HOSTNAME=DS216
         volumes:
             - '/volume1/docker/homebridge:/homebridge'
         network_mode: host
